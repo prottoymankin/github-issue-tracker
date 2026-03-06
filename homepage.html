@@ -23,7 +23,7 @@
 <body class="bg-[#F8FAFC]">
   
   <!-- Navbar Section -->
-  <header class="bg-white border border-[#E9E9E9]">
+  <header class="bg-white border-b border-b-[#E9E9E9]">
     <nav class="flex justify-between items-center max-w-[1440px] mx-auto py-4">
       <div class="flex items-center gap-1">
         <img src="./assets/github-logo.png" alt="" class="w-9">
@@ -51,10 +51,34 @@
     </nav>
   </header>
 
-  <section class="max-w-[1110px] mx-auto mt-[60px] p-6 bg-white rounded-lg shadow-sm gap-2">
+  <section class="max-w-[1110px] mx-auto mt-[60px] p-6 bg-white rounded-lg shadow-lg gap-2 mb-4">
     <button id="all-btn" class="primary-btn active tab-btn">All</button>
     <button id="open-btn" class="primary-btn tab-btn">Open</button>
     <button id="closed-btn" class="primary-btn tab-btn">Closed</button>
+  </section>
+
+  <section class="max-w-[1110px] mx-auto mt-[60px] bg-white rounded-lg shadow-lg">
+    <div class="flex items-center justify-between p-6 border-b border-b-[#E4E4E7]">
+      <div class="flex items-center gap-2">
+        <div class="w-[50px] h-[50px] rounded-full bg-[#ECE4FF] flex items-center justify-center">
+          <img src="./assets/Aperture.png" alt="">
+        </div>
+        <div>
+          <p class="text-xl font-semibold text-[#1F2937]"><span>50</span> Issues</p>
+          <p class="text-[#64748B]">Track and manage your project issues</p>
+        </div>
+      </div>
+      <div class="flex items-center gap-4">
+        <div class="flex items-center gap-2">
+          <div class="h-3 w-3 rounded-full bg-[#00A96E]"></div>
+          <span>Open</span>
+        </div>
+        <div class="flex items-center gap-2">
+          <div class="h-3 w-3 rounded-full bg-[#A855F7]"></div>
+          <span>Closed</span>
+        </div>
+      </div>
+    </div>
   </section>
 
   <script src="./scripts/homepage.js"></script>
