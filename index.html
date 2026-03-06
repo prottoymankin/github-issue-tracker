@@ -20,8 +20,30 @@
   <!-- Stylesheet -->
   <link rel="stylesheet" href="./styles/style.css">
 </head>
-<body>
-  
+<body class="bg-[#F8FAFC]">
+
+  <main class="flex items-center justify-center h-screen">
+    <div class="p-8 rounded-lg shadow-xl w-full max-w-[520px] space-y-6 bg-white">
+      <div class="text-center">
+        <img src="./assets/github-logo.png" alt="" class="mx-auto mb-6">
+        <h2 class="text-[#1F2937] text-2xl font-semibold">GitHub Issues Tracker</h2>
+        <p class="text-[#64748B]">Sign in to manage your issues</p>
+      </div>
+
+      <div>
+        <div class="flex flex-col mb-4 space-y-2">
+          <label class="text-[#1F2937] font-medium">Username</label>
+          <input type="text" placeholder="Enter Username" class="input w-full" />
+        </div>
+        <div class="flex flex-col space-y-2">
+          <label class="text-[#1F2937] font-medium">Password</label>
+          <input type="password" placeholder="Enter Password" class="input w-full" />
+        </div>
+        <button class="btn btn-primary w-full mt-6">Sign In</button>
+      </div>
+    </div>
+  </main>
+
   <script src="./scripts/index.js"></script>
 </body>
 </html>
