@@ -82,6 +82,19 @@
 
     <div id="issues-container" class="p-6 grid grid-cols-3 gap-3"></div>
 
+    <!-- Modal -->
+    <!-- <button class="btn" onclick="my_modal_1.showModal()">open modal</button> -->
+    <dialog id="issue_details" class="modal">
+      <div class="modal-box">
+        <div id="issue-details-info"></div>
+        <div class="modal-action">
+          <form method="dialog">
+            <button class="btn btn-primary">Close</button>
+          </form>
+        </div>
+      </div>
+    </dialog>
+
     <!-- Loding Spinner -->
     <div id="loading-spinner" class="hidden justify-center items-center h-[30vh]">
       <span class="loading loading-dots loading-xl"></span>
