@@ -57,8 +57,8 @@ function displayIssues(issues) {
             <div class="
             ${priority === 'high' ? 'high-priority' : priority === "medium" ? 'medium-priority': 'low-priority'} px-2 py-1 rounded-full text-xs font-medium w-20 text-center">${priority}</div>
           </div>
-          <h2 class="text-sm font-semibold text-[#1F2937]">${title}</h2>
-          <p class="text-xs text-[#64748B] mt-2.5 line-clamp-2">${description}</p>
+          <h2 class="text-sm font-semibold text-[#1F2937] line-clamp-1">${title}</h2>
+          <p class="text-xs text-[#64748B] mt-2.5 line-clamp-2 md:line-clamp-1 lg:line-clamp-2">${description}</p>
           <div class="flex gap-2 text-xs font-medium my-2.5">${displayLabels(labels)}</div>
         </div>
 
