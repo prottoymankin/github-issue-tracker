@@ -2,6 +2,7 @@ const issuesContainer = document.querySelector("#issues-container");
 const tabButtons = document.querySelectorAll(".tab-btn");
 const allButton = document.querySelector("#all-btn");
 const openButton = document.querySelector("#open-btn");
+const closedButton = document.querySelector("#closed-btn");
 
 async function loadIssues() {
   const response = await fetch("https://phi-lab-server.vercel.app/api/v1/lab/issues");
@@ -74,4 +75,17 @@ openButton.addEventListener("click", () => {
   removeActiveTab();
   openButton.classList.add("active-tab");
   loadOpenIssues();
+});
+
+async function loadClosedIssues() {
+  const response = await fetch("https://phi-lab-server.vercel.app/api/v1/lab/issues");
+  const data = await response.json();
+  const closedIssues = (data.data).filter(issue => issue.status === "closed");
+  displayIssues(closedIssues);
+}
+
+closedButton.addEventListener("click", () => {
+  removeActiveTab();
+  closedButton.classList.add("active-tab");
+  loadClosedIssues();
 });
