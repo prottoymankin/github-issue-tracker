@@ -5,6 +5,7 @@ const openButton = document.querySelector("#open-btn");
 const closedButton = document.querySelector("#closed-btn");
 const loadingSpinner = document.querySelector("#loading-spinner");
 const issueDetailsInfo = document.querySelector("#issue-details-info");
+const issueCount = document.querySelector("#issue-count");
 
 function showLoadinSpinner() {
   issuesContainer.innerHTML = "";
@@ -27,6 +28,7 @@ async function loadIssues() {
 }
 
 function displayIssues(issues) {
+  issueCount.textContent = issues.length;
   issuesContainer.innerHTML = "";
   issues.forEach(issue => {
     const {id, author, title, description, status, labels, createdAt, priority} = issue;
@@ -148,7 +150,7 @@ function displayIssuesDetails(details) {
         </div>
         <div class="w-1/2">
           <p class="text-[#64748B]">Priority:</p>
-          <p class="text-xs w-fit text-center rounded-full px-2 py-1
+          <p class="text-xs w-20 text-center rounded-full px-2 py-1
             ${priority === 'high' 
                 ? 'bg-[#FEECEC] text-[#EF4444]'
                 : priority === "medium"
