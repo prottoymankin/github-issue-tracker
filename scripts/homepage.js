@@ -81,6 +81,7 @@ function removeActiveTab() {
 }
 
 allButton.addEventListener("click", () => {
+  searchInput.value = "";
   removeActiveTab();
   allButton.classList.add("active-tab");
   loadIssues();
@@ -96,6 +97,7 @@ async function loadOpenIssues() {
 }
 
 openButton.addEventListener("click", () => {
+  searchInput.value = "";
   removeActiveTab();
   openButton.classList.add("active-tab");
   loadOpenIssues();
@@ -111,6 +113,7 @@ async function loadClosedIssues() {
 }
 
 closedButton.addEventListener("click", () => {
+  searchInput.value = "";
   removeActiveTab();
   closedButton.classList.add("active-tab");
   loadClosedIssues();
