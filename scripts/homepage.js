@@ -7,6 +7,7 @@ async function loadIssues() {
 }
 
 function displayIssues(issues) {
+  issuesContainer.innerHTML = "";
   issues.forEach(issue => {
     const {id, author, title, description, status, labels, createdAt, priority} = issue;
     const div = document.createElement("div");
@@ -18,7 +19,13 @@ function displayIssues(issues) {
               src="./assets/${status === 'open' ? 'Open' : 'Closed'}-Status.png" 
               alt=""
             >
-            <div class="bg-[#FEECEC] p-2 rounded-[40px] text-xs text-[#EF4444] font-medium w-20 text-center">${priority}</div>
+            <div class="
+            ${priority === 'high' 
+              ? 'bg-[#FEECEC] text-[#EF4444]'
+              : priority === "medium"
+                ? 'bg-[#FFF6D1] text-[#F59E0B]'
+                : 'bg-[#EEEFF2] text-[#9CA3AF]'
+            } p-2 rounded-[40px] text-xs  font-medium w-20 text-center">${priority}</div>
           </div>
           <h2 class="text-sm font-semibold text-[#1F2937]">${title}</h2>
           <p class="text-xs text-[#64748B] mt-2.5 line-clamp-2">${description}</p>
