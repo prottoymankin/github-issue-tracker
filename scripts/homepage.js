@@ -23,8 +23,9 @@ function displayIssues(issues) {
           <h2 class="text-sm font-semibold text-[#1F2937]">${title}</h2>
           <p class="text-xs text-[#64748B] mt-2.5 line-clamp-2">${description}</p>
           <div class="flex gap-2 text-xs font-medium my-2.5">
-            <p class="rounded-[40px] bg-[#e49a44] p-2">BUG</p>
-            <p class="rounded-[40px] bg-[#e49a44] p-2">HELP WANTED</p>
+            ${(labels.map(label => {
+              return `<p class="rounded-[40px] bg-[#e49a44] p-2">${label}</p>`
+            })).join("")}
           </div>
         </div>
 
