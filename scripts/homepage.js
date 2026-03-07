@@ -9,6 +9,10 @@ const issueCount = document.querySelector("#issue-count");
 const searchInput = document.querySelector("#search-input");
 const searchButton = document.querySelector("#search-btn");
 
+function formateDate(date) {
+  return (new Date(date).toLocaleDateString());
+}
+
 function showLoadinSpinner() {
   issuesContainer.innerHTML = "";
   loadingSpinner.classList.remove("hidden");
@@ -29,6 +33,13 @@ async function loadIssues() {
   displayIssues(data.data);
 }
 
+function displayLabels(labels) {
+  const labelsHTML = labels.map(label => {
+    return `<p class="rounded-full text-[#D97706] bg-[#FFF8DB] px-2 py-1 border border-[#D97706]">${label}</p>`
+  });
+  return labelsHTML.join("");
+}
+
 function displayIssues(issues) {
   issueCount.textContent = issues.length;
   issuesContainer.innerHTML = "";
@@ -44,25 +55,16 @@ function displayIssues(issues) {
               alt=""
             >
             <div class="
-            ${priority === 'high' 
-              ? 'bg-[#FEECEC] text-[#EF4444]'
-              : priority === "medium"
-                ? 'bg-[#FFF6D1] text-[#F59E0B]'
-                : 'bg-[#EEEFF2] text-[#9CA3AF]'
-            } px-2 py-1 rounded-full text-xs font-medium w-20 text-center">${priority}</div>
+            ${priority === 'high' ? 'high-priority' : priority === "medium" ? 'medium-priority': 'low-priority'} px-2 py-1 rounded-full text-xs font-medium w-20 text-center">${priority}</div>
           </div>
           <h2 class="text-sm font-semibold text-[#1F2937]">${title}</h2>
           <p class="text-xs text-[#64748B] mt-2.5 line-clamp-2">${description}</p>
-          <div class="flex gap-2 text-xs font-medium my-2.5">
-            ${(labels.map(label => {
-              return `<p class="rounded-full text-[#D97706] bg-[#FFF8DB] px-2 py-1 border border-[#FDE68A]">${label}</p>`
-            })).join("")}
-          </div>
+          <div class="flex gap-2 text-xs font-medium my-2.5">${displayLabels(labels)}</div>
         </div>
 
         <div class="border-t border-[#E4E4E7] p-4 text-[#64748B] text-xs space-y-2">
           <p>#${id} by ${author}</p>
-          <p>${new Date(createdAt).toLocaleDateString()}</p>
+          <p>${formateDate(createdAt)}</p>
         </div>
       </div>
     `;
@@ -129,19 +131,15 @@ function displayIssuesDetails(details) {
       <div class="space-y-2">
         <h2 class="text-2xl text-[#1F2937] font-bold">${title}</h2>
         <div class="text-xs flex items-center gap-2 text-[#64748B]">
-          <p class="font-medium text-white py-1.5 px-2  rounded-full ${status === "open" ? "bg-[#00A96E]" : "bg-[#EF4444]"}">${status}</p>
+          <p class="font-medium text-white py-1.5 px-2 rounded-full ${status === "open" ? "bg-[#00A96E]" : "bg-[#EF4444]"}">${status}</p>
           <span>&#9679;</span>
-          <p>${status === "open" ? "Opened" : "Closed"} by ${author}</p>
+          <p>Opened by ${author}</p>
           <span>&#9679;</span>
-          <p>${new Date(createdAt).toLocaleDateString()}</p>
+          <p>${formateDate(createdAt)}</p>
         </div>
       </div>
 
-      <div class="flex gap-2 text-xs font-medium">
-        ${(labels.map(label => {
-          return `<p class="rounded-full text-[#D97706] bg-[#FFF8DB] px-2 py-1 border border-[#FDE68A]">${label}</p>`
-        })).join("")}
-      </div>
+      <div class="flex gap-2 text-xs font-medium">${displayLabels(labels)}</div>
 
       <p class="text-[#64748B]">${description}</P>
 
@@ -152,14 +150,7 @@ function displayIssuesDetails(details) {
         </div>
         <div class="w-1/2">
           <p class="text-[#64748B]">Priority:</p>
-          <p class="text-xs w-20 text-center rounded-full px-2 py-1
-            ${priority === 'high' 
-                ? 'bg-[#FEECEC] text-[#EF4444]'
-                : priority === "medium"
-                  ? 'bg-[#FFF6D1] text-[#F59E0B]'
-                  : 'bg-[#EEEFF2] text-[#9CA3AF]'
-              }"
-            >${priority}</p>
+          <p class="${priority === 'high' ? 'high-priority' : priority === "medium" ? 'medium-priority': 'low-priority'} text-xs w-20 text-center rounded-full px-2 py-1">${priority}</p>
         </div>
       </div>
     </div>
