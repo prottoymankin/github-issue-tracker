@@ -6,6 +6,8 @@ const closedButton = document.querySelector("#closed-btn");
 const loadingSpinner = document.querySelector("#loading-spinner");
 const issueDetailsInfo = document.querySelector("#issue-details-info");
 const issueCount = document.querySelector("#issue-count");
+const searchInput = document.querySelector("#search-input");
+const searchButton = document.querySelector("#search-btn");
 
 function showLoadinSpinner() {
   issuesContainer.innerHTML = "";
@@ -163,4 +165,18 @@ function displayIssuesDetails(details) {
     </div>
   `;
   document.querySelector("#issue_details").showModal();
+}
+
+searchButton.addEventListener("click", () => {
+  removeActiveTab();
+  const searchValue = searchInput.value;
+  loadSearchIssues(searchValue);
+});
+
+async function loadSearchIssues(searchValue) {
+  showLoadinSpinner();
+  const response = await fetch(`https://phi-lab-server.vercel.app/api/v1/lab/issues/search?q=${searchValue}`);
+  const data = await response.json();
+  hideLoadingSpinner();
+  displayIssues(data.data);
 }
