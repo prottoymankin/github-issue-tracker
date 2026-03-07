@@ -10,7 +10,7 @@
   cursor: pointer;
 }
 
-.active {
+.active-tab {
   background-color: #4A00FF;
   color: #FFF;
 }
