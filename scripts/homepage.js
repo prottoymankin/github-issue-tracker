@@ -3,10 +3,25 @@ const tabButtons = document.querySelectorAll(".tab-btn");
 const allButton = document.querySelector("#all-btn");
 const openButton = document.querySelector("#open-btn");
 const closedButton = document.querySelector("#closed-btn");
+const loadingSpinner = document.querySelector("#loading-spinner");
+
+function showLoadinSpinner() {
+  issuesContainer.innerHTML = "";
+  loadingSpinner.classList.remove("hidden");
+  loadingSpinner.classList.add("flex");
+}
+
+function hideLoadingSpinner() {
+  issuesContainer.innerHTML = "";
+  loadingSpinner.classList.add("hidden");
+  loadingSpinner.classList.remove("flex");
+}
 
 async function loadIssues() {
+  showLoadinSpinner();
   const response = await fetch("https://phi-lab-server.vercel.app/api/v1/lab/issues");
   const data = await response.json();
+  hideLoadingSpinner();
   displayIssues(data.data);
 }
 
@@ -65,9 +80,11 @@ allButton.addEventListener("click", () => {
 });
 
 async function loadOpenIssues() {
+  showLoadinSpinner();
   const response = await fetch("https://phi-lab-server.vercel.app/api/v1/lab/issues");
   const data = await response.json();
   const openIssues = (data.data).filter(issue => issue.status === "open");
+  hideLoadingSpinner();
   displayIssues(openIssues);
 }
 
@@ -78,9 +95,11 @@ openButton.addEventListener("click", () => {
 });
 
 async function loadClosedIssues() {
+  showLoadinSpinner();
   const response = await fetch("https://phi-lab-server.vercel.app/api/v1/lab/issues");
   const data = await response.json();
   const closedIssues = (data.data).filter(issue => issue.status === "closed");
+  hideLoadingSpinner();
   displayIssues(closedIssues);
 }
 
